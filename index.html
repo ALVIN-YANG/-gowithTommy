@@ -19,7 +19,12 @@ button {
 
 <p id="demo"></p>
 <button onclick="getLocation()">获取经纬度</button>
+<br/>
 
+
+<input type="file" capture="camcorder" accept="image/*" id="filetest" name="filetest">
+
+<img src="" id="v_photoA" style="width:100%;"/>
 
 </body>
 <script>
@@ -38,6 +43,27 @@ function getLocation(){    //检测是否支持地理定位 如果支持，则�
 function showPosition(position){  //showPosition() 函数获得并显示经度和纬度
 　　x.innerHTML="纬度: " + position.coords.latitude + "<br />经度: " + position.coords.longitude;
 　　x2.innerHTML= +position.coords.latitude +","+position.coords.longitude;
+}
+
+document.querySelector('#filetest').onchange = function () {
+        alert(111);
+        var fileTag = document.getElementById('filetest');
+        console.log();
+       var file = fileTag.files[0];
+
+           var fileReader = new FileReader();
+
+           fileReader.onloadend = function () {
+
+               if (fileReader.readyState == fileReader.DONE) {
+
+                   document.getElementById('v_photoA').setAttribute('src', fileReader.result);
+
+               }
+
+           };
+
+           fileReader.readAsDataURL(file);
 }
 </script>
 
